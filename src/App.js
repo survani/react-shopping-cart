@@ -25,12 +25,21 @@ const App = () => {
     setCart([...cart, item]);
   };
 
+  const removeItem = id => {
+    console.log(id);
+    console.log(cart);
+    alert("Are you sure you want to delete");
+    const items = cart.filter(item => item.id !== id);
+
+    setCart(items);
+  };
+
   return (
     <div className="App">
       {/* Context.Provider used here to remove prop drilling */}
       <ProductContext.Provider value={{ products, addItem }}>
-        <CartContext.Provider value={{ cart }}>
-          <Navigation cart={cart} />
+        <CartContext.Provider value={{ cart, removeItem }}>
+          <Navigation />
 
           {/* ROUTES BELOW: Using Context Api now */}
           <Route exact path="/" component={Products} />
